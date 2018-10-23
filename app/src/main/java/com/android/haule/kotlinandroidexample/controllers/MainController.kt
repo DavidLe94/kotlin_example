@@ -58,7 +58,7 @@ class MainController(context: Context): ItemOnClickListener{
     }
 
     private fun onFailed(message: String){
-        Toast.makeText(context, "Server err!!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onClick(position: Int) {

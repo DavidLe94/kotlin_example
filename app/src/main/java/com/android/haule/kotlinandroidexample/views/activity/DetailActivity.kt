@@ -2,6 +2,8 @@ package com.android.haule.kotlinandroidexample.views.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.TextView
 import com.android.haule.kotlinandroidexample.R
 import com.android.haule.kotlinandroidexample.eventbus.OwnerDetailEvent
@@ -13,7 +15,23 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), View.OnClickListener{
+    var TAG: String = "DetailActivity"
+    
+    override fun onClick(view: View?) {
+        when(view!!.id){
+            R.id.img_profile_image -> {
+                Log.d(TAG, " Image onClick")
+            }
+            R.id.tv_display_name -> {
+                Log.d(TAG, " Name onClick")
+            }
+            R.id.tv_user_type -> {
+                Log.d(TAG, " User Type onClick")
+            }
+        }
+    }
+
     private var profileImage: CircleImageView? = null
     private var displayName: TextView? = null
     private var userType: TextView? = null
@@ -22,6 +40,13 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         initView()
+        setEvent()
+    }
+
+    private fun setEvent() {
+        profileImage!!.setOnClickListener(this)
+        displayName!!.setOnClickListener(this)
+        userType!!.setOnClickListener(this)
     }
 
     private fun initView() {
